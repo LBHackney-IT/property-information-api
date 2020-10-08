@@ -1,21 +1,24 @@
 using System;
 using PropertyInformationApi.V1.Domain;
 using PropertyInformationApi.V1.Gateways;
+using PropertyInformationApi.V1.Mapper;
 
 namespace PropertyInformationApi.V1.UseCase
 {
     public class GetProperty : IGetProperty
     {
         private readonly IPropertyGateway _gateway;
-        public GetProperty(IPropertyGateway gateway)
+        private readonly EntityMapper _mapper;
+        public GetProperty(IPropertyGateway gateway, EntityMapper mapper)
         {
             _gateway = gateway;
+            _mapper = mapper;
         }
         public HousingProperty Execute(string propertyReference)
         {
             var response = _gateway.GetPropertyByPropertyReference(propertyReference);
 
-            return response;
+            return _mapper.ToDomain(response);
         }
 
         //public class GetPropertyByRefResponse

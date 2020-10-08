@@ -10,21 +10,16 @@ namespace PropertyInformationApi.V1.Gateways
     public class PropertyGateway : IPropertyGateway/*, IGetPropertyChildrenGateway, IGetMultiplePropertiesGateway*/
     {
         private readonly UhContext _uhContext;
-        private readonly EntityMapper _factory;
 
-        public PropertyGateway(UhContext uhContext, EntityMapper factory)
+        public PropertyGateway(UhContext uhContext)
         {
             _uhContext = uhContext;
-            _factory = factory;
         }
-        public HousingProperty GetPropertyByPropertyReference(string propertyReference)
+        public UHProperty GetPropertyByPropertyReference(string propertyReference)
         {
             var response = _uhContext.UhProperties.Find(propertyReference);
-            if (response == null)
-            {
-                return null;
-            }
-            return _factory.ToDomain(response);
+            if (response == null) return null;
+            return response;
         }
 
         /*public IList<HousingProperty> GetPropertyChildren(string propertyReference)

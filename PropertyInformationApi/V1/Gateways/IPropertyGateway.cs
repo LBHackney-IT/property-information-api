@@ -1,10 +1,9 @@
-using System.Collections;
-using PropertyInformationApi.V1.Domain;
+using PropertyInformationApi.V1.Infrastructure;
 
 namespace PropertyInformationApi.V1.Gateways
 {
     public interface IPropertyGateway
     {
-        HousingProperty GetPropertyByPropertyReference(string propertyReference);
+        UHProperty GetPropertyByPropertyReference(string propertyReference);
     }
 }

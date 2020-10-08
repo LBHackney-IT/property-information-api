@@ -6,6 +6,6 @@ namespace PropertyInformationApi.V1.Infrastructure
     {
         public UhContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<UHProperty> UhProperties{ get; set; }
+        public DbSet<UHProperty> UhProperties { get; set; }
     }
 }
