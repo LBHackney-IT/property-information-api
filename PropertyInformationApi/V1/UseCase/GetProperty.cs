@@ -17,7 +17,6 @@ namespace PropertyInformationApi.V1.UseCase
         public HousingProperty Execute(string propertyReference)
         {
             var response = _gateway.GetPropertyByPropertyReference(propertyReference);
-
             return _mapper.ToDomain(response);
         }
 

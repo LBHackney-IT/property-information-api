@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS dbo;
 
-CREATE TABLE dbo.property(
+CREATE TABLE dbo."property"(
 	prop_ref char(12) NOT NULL PRIMARY KEY,
 	level_code char(1) NULL,
 	major_ref char(12) NULL,

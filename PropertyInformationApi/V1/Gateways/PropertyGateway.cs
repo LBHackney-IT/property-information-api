@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace PropertyInformationApi.V1.Gateways
 {
-    public class PropertyGateway : IPropertyGateway/*, IGetPropertyChildrenGateway, IGetMultiplePropertiesGateway*/
+    public class PropertyGateway : IPropertyGateway
     {
         private readonly UhContext _uhContext;
 

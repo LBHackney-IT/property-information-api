@@ -11,16 +11,11 @@ namespace PropertyInformationApi.Tests.V1.Gateways
     {
         private PropertyGateway _classUnderTest;
         private static Fixture _fixture = new Fixture();
-        //private PropertyFactory _factory;
-
-        //private readonly PropertyTestHelper _uhPropertyHelper = new PropertyTestHelper();
 
         [SetUp]
         public void Setup()
         {
-            //var config = PropertyHelper.ConfigureMapper();
-            //_factory = new PropertyFactory(config.CreateMapper());
-            _classUnderTest = new PropertyGateway(UhContext);//, _factory);
+            _classUnderTest = new PropertyGateway(UhContext);
         }
 
         [Test]
