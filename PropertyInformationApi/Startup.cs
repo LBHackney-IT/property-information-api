@@ -107,6 +107,7 @@ namespace PropertyInformationApi
                 if (File.Exists(xmlPath))
                     c.IncludeXmlComments(xmlPath);
             });
+            ConfigurePropertyFactory(services);
             ConfigureDbContext(services);
             RegisterGateways(services);
             RegisterUseCases(services);
