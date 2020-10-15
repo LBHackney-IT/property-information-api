@@ -8,8 +8,8 @@ namespace PropertyInformationApi.V1.UseCase
     public class GetProperty : IGetProperty
     {
         private readonly IPropertyGateway _gateway;
-        private readonly EntityMapper _mapper;
-        public GetProperty(IPropertyGateway gateway, EntityMapper mapper)
+        private readonly IEntityMapper _mapper;
+        public GetProperty(IPropertyGateway gateway, IEntityMapper mapper)
         {
             _gateway = gateway;
             _mapper = mapper;
