@@ -4,7 +4,7 @@ using PropertyInformationApi.V1.Infrastructure;
 
 namespace PropertyInformationApi.V1.Mapper
 {
-    public class EntityMapper
+    public class EntityMapper : IEntityMapper
     {
         private readonly IMapper _mapper;
 

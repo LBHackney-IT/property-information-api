@@ -110,6 +110,7 @@ namespace PropertyInformationApi
             ConfigureDbContext(services);
             RegisterGateways(services);
             RegisterUseCases(services);
+            ConfigurePropertyFactory(services);
         }
 
         private static void ConfigurePropertyFactory(IServiceCollection services)
