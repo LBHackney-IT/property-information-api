@@ -115,9 +115,7 @@ namespace PropertyInformationApi
 
         private static void ConfigurePropertyFactory(IServiceCollection services)
         {
-            var mappingConfig = new MapperConfiguration(cfg => { cfg.CreateMap<UHProperty, HousingProperty>(); });
-            var propertyMapper = new EntityMapper(mappingConfig.CreateMapper());
-            services.AddSingleton(propertyMapper);
+            services.AddAutoMapper(typeof(UHPropertyProfile));
         }
 
         private static void ConfigureDbContext(IServiceCollection services)
@@ -137,7 +135,7 @@ namespace PropertyInformationApi
 
         private static void RegisterUseCases(IServiceCollection services)
         {
-            services.AddScoped<IGetProperty, GetProperty>();
+            services.AddScoped<IGetPropertyUseCase, GetPropertyUseCase>();
             /*services.AddScoped<IGetPropertyChildrenUseCase, GetPropertyChildrenUseCase>();
             services.AddScoped<IGetMultiplePropertiesUseCase, GetMultiplePropertiesUseCase>();*/
         }

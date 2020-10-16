@@ -1,10 +1,11 @@
+using AutoMapper;
 using PropertyInformationApi.V1.Domain;
 using PropertyInformationApi.V1.Infrastructure;
 
 namespace PropertyInformationApi.V1.Mapper
 {
-    public interface IEntityMapper
+    public class UHPropertyProfile : Profile
     {
-        HousingProperty ToDomain(UHProperty uhProperty);
+        public UHPropertyProfile() => CreateMap<UHProperty, HousingProperty>();
     }
 }
