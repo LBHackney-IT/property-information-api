@@ -1,15 +1,14 @@
-using System;
+using AutoMapper;
 using PropertyInformationApi.V1.Domain;
 using PropertyInformationApi.V1.Gateways;
-using PropertyInformationApi.V1.Mapper;
 
 namespace PropertyInformationApi.V1.UseCase
 {
-    public class GetProperty : IGetProperty
+    public class GetPropertyUseCase : IGetPropertyUseCase
     {
         private readonly IPropertyGateway _gateway;
-        private readonly IEntityMapper _mapper;
-        public GetProperty(IPropertyGateway gateway, IEntityMapper mapper)
+        private readonly IMapper _mapper;
+        public GetPropertyUseCase(IPropertyGateway gateway, IMapper mapper)
         {
             _gateway = gateway;
             _mapper = mapper;
@@ -17,7 +16,7 @@ namespace PropertyInformationApi.V1.UseCase
         public HousingProperty Execute(string propertyReference)
         {
             var response = _gateway.GetPropertyByPropertyReference(propertyReference);
-            return _mapper.ToDomain(response);
+            return _mapper.Map<HousingProperty>(response);
         }
 
         //public class GetPropertyByRefResponse
