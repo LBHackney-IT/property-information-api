@@ -14,8 +14,6 @@
       <Compile Remove="V1\Boundary\Response\GetMultiplePropertiesUseCaseResponse.cs" />
       <Compile Remove="V1\Controllers\PropertyChildrenController.cs" />
       <Compile Remove="V1\Factories\ResponseFactory.cs" />
-      <Compile Remove="V1\UseCase\GetMultiplePropertiesUseCase.cs" />
-      <Compile Remove="V1\UseCase\Interfaces\IGetMultiplePropertiesUseCase.cs" />
       <Compile Remove="V1\Validation\GetMultiplePropertiesValidator.cs" />
     </ItemGroup>
 

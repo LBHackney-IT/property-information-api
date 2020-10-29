@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="V1\Controllers" />
     <Folder Include="V1\Controllers\" />
     <Folder Include="V1\Domain\" />
     <Folder Include="V1\E2ETests\" />

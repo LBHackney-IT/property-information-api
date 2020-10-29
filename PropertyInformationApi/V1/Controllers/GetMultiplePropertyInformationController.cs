@@ -3,6 +3,7 @@
 // using Microsoft.Extensions.Logging;
 // using PropertyInformationApi.V1.UseCase.GetMultipleProperties.Boundaries;
 // using PropertyInformationApi.V1.UseCase.GetPropertyChildren.Models;
+// using PropertyInformationApi.V1.UseCase.Interfaces;
 //
 // namespace PropertyInformationApi.V1.Controllers
 // {
@@ -42,7 +43,7 @@
 //         [Produces("application/json")]
 //         [ProducesResponseType(typeof(GetMultiplePropertiesUseCaseResponse), 200)]
 //         [ProducesResponseType(typeof(BadRequestResult), 400)]
-//         public IActionResult GetMultipleByReference([FromQuery]GetMultiplePropertiesUseCaseRequest propertyReferencesRequest)
+//         public IActionResult GetMultipleByReference([FromQuery]GetMultiplePropertiesRequest propertyReferencesRequest)
 //         {
 //             _logger.LogInformation("Multiple Property information was requested for " + propertyReferencesRequest.PropertyReferences?.Select(s => s + " ").ToList());
 //
