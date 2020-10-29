@@ -21,6 +21,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using PropertyInformationApi.V1.Domain;
 using PropertyInformationApi.V1.Mapper;
+using PropertyInformationApi.V1.UseCase.Interfaces;
 
 namespace PropertyInformationApi
 {
@@ -129,15 +130,12 @@ namespace PropertyInformationApi
         private static void RegisterGateways(IServiceCollection services)
         {
             services.AddScoped<IPropertyGateway, PropertyGateway>();
-            /* services.AddScoped<IGetPropertyChildrenGateway, PropertyGateway>();
-             services.AddScoped<IGetMultiplePropertiesGateway, PropertyGateway>();*/
         }
 
         private static void RegisterUseCases(IServiceCollection services)
         {
             services.AddScoped<IGetPropertyUseCase, GetPropertyUseCase>();
-            /*services.AddScoped<IGetPropertyChildrenUseCase, GetPropertyChildrenUseCase>();
-            services.AddScoped<IGetMultiplePropertiesUseCase, GetMultiplePropertiesUseCase>();*/
+            services.AddScoped<IGetPropertiesUseCase, GetPropertiesUseCase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

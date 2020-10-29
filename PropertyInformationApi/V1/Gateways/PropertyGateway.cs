@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
 using PropertyInformationApi.V1.Infrastructure;
-using PropertyInformationApi.V1.Domain;
-using PropertyInformationApi.V1.Mapper;
 using System.Collections.Generic;
+using PropertyInformationApi.V1.Boundary.Request;
 
 namespace PropertyInformationApi.V1.Gateways
 {
@@ -15,29 +13,16 @@ namespace PropertyInformationApi.V1.Gateways
         {
             _uhContext = uhContext;
         }
+
         public UHProperty GetPropertyByPropertyReference(string propertyReference)
         {
             var response = _uhContext.UhProperties.Find(propertyReference);
-            if (response == null) return null;
             return response;
         }
 
-        /*public IList<HousingProperty> GetPropertyChildren(string propertyReference)
-        {
-            var children = _uhContext.UhPropertys.Where(p => p.MajorRef == propertyReference);
-            var listChildren = children.Select(c => _factory.FromUHProperty(c)).ToList();
-            return listChildren;
-        }
-
-        public List<HousingProperty> GetMultiplePropertiesByPropertyListOfReferences(IList<string> propertyReferences)
-        {
-            if (propertyReferences == null)
-            {
-                return null;
-            }
-            var properties = _uhContext.UhPropertys.Where(prop => propertyReferences.Contains(prop.PropRef));
-            List<Property> listProperties = properties.Select(prop => _factory.FromUHProperty(prop)).ToList();
-            return listProperties;
-        }*/
+        public IEnumerable<UHProperty> GetPropertiesByPostcodeOrAddress(GetPropertiesRequest request) =>
+            from property in _uhContext.UhProperties
+            where property.ShortAddress == request.Address || property.PostCode == request.Postcode
+            select property;
     }
 }

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace PropertyInformationApi.Tests
 {
     [TestFixture]
-    public class UhTests
+    public class PropertyDbTests
     {
         private IDbContextTransaction _transaction;
         protected UhContext UhContext { get; private set; }
