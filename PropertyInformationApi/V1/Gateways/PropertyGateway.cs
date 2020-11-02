@@ -22,7 +22,7 @@ namespace PropertyInformationApi.V1.Gateways
 
         public IEnumerable<UHProperty> GetPropertiesByPostcodeOrAddress(GetPropertiesRequest request) =>
             from property in _uhContext.UhProperties
-            where property.ShortAddress == request.Address || property.PostCode == request.Postcode
+            where property.Address1 == request.Address || property.PostCode == request.Postcode
             select property;
     }
 }
