@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using PropertyInformationApi.V1.Infrastructure;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using PropertyInformationApi.V1.Boundary.Request;
 
 namespace PropertyInformationApi.V1.Gateways
@@ -21,8 +23,8 @@ namespace PropertyInformationApi.V1.Gateways
         }
 
         public IEnumerable<UHProperty> GetPropertiesByPostcodeOrAddress(GetPropertiesRequest request) =>
-            from property in _uhContext.UhProperties
-            where property.ShortAddress == request.Address || property.PostCode == request.Postcode
-            select property;
+            _uhContext.UhProperties.Where(property =>
+                property.Address1.Contains(request.Address) ||
+                property.PostCode.StartsWith(request.Postcode));
     }
 }
