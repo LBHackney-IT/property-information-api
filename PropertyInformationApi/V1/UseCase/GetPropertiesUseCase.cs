@@ -11,15 +11,19 @@ namespace PropertyInformationApi.V1.UseCase
     {
         private readonly IPropertyGateway _gateway;
         private readonly IMapper _mapper;
+        private readonly IValidatePostcode _validatePostcode;
 
-        public GetPropertiesUseCase(IPropertyGateway gateway, IMapper mapper)
+        public GetPropertiesUseCase(IPropertyGateway gateway, IMapper mapper, IValidatePostcode validatePostcode)
         {
             _gateway = gateway;
             _mapper = mapper;
+            _validatePostcode = validatePostcode;
         }
 
         public List<HousingProperty> Execute(GetPropertiesRequest request)
         {
+            if (!_validatePostcode.Execute(request.Postcode))
+                throw new InvalidQueryParameterException("The Postcode parameter does not have a valid format");
             var response = _gateway.GetPropertiesByPostcodeOrAddress(request);
             return _mapper.Map<List<HousingProperty>>(response);
         }

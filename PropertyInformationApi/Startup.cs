@@ -35,7 +35,7 @@ namespace PropertyInformationApi
         public IConfiguration Configuration { get; }
         private static List<ApiVersionDescription> _apiVersions { get; set; }
         //TODO update the below to the name of your API
-        private const string ApiName = "Your API Name";
+        private const string ApiName = "Property Information API";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public static void ConfigureServices(IServiceCollection services)
@@ -58,7 +58,7 @@ namespace PropertyInformationApi
                     new OpenApiSecurityScheme
                     {
                         In = ParameterLocation.Header,
-                        Description = "Your Hackney API Key",
+                        Description = "Property Information API",
                         Name = "X-Api-Key",
                         Type = SecuritySchemeType.ApiKey
                     });
