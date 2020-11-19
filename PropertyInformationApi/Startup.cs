@@ -58,7 +58,7 @@ namespace PropertyInformationApi
                     new OpenApiSecurityScheme
                     {
                         In = ParameterLocation.Header,
-                        Description = "Property Information API",
+                        Description = "Property Information API key",
                         Name = "X-Api-Key",
                         Type = SecuritySchemeType.ApiKey
                     });
@@ -136,6 +136,7 @@ namespace PropertyInformationApi
         {
             services.AddScoped<IGetPropertyUseCase, GetPropertyUseCase>();
             services.AddScoped<IGetPropertiesUseCase, GetPropertiesUseCase>();
+            services.AddScoped<IValidatePostcode, ValidatePostcode>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
