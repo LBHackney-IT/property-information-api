@@ -68,7 +68,7 @@ namespace PropertyInformationApi.V1.Controllers
             try
             {
                 var useCaseResponse = _getProperties.Execute(propertyReferencesRequest);
-                if (useCaseResponse is null) return NotFound();
+                if (useCaseResponse == null) return NotFound();
                 return Ok(useCaseResponse);
             }
             catch (InvalidQueryParameterException exception)

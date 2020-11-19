@@ -23,8 +23,10 @@ namespace PropertyInformationApi.V1.Gateways
         }
 
         public IEnumerable<UHProperty> GetPropertiesByPostcodeOrAddress(GetPropertiesRequest request) =>
-            _uhContext.UhProperties.Where(property =>
-                property.Address1.Contains(request.Address) ||
-                property.PostCode.StartsWith(request.Postcode));
+            _uhContext.UhProperties
+            .Where(property => string.IsNullOrEmpty(request.Address) ||
+            property.Address1.ToLower().Contains(request.Address.ToLower()))
+            .Where(property => string.IsNullOrEmpty(request.Postcode) ||
+            property.PostCode.ToLower() == request.Postcode.ToLower());
     }
 }

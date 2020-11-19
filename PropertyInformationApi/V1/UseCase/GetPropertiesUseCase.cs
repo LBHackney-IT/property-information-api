@@ -20,10 +20,11 @@ namespace PropertyInformationApi.V1.UseCase
             _validatePostcode = validatePostcode;
         }
 
-        public List<HousingProperty> Execute(GetPropertiesRequest request)
+        public IList<HousingProperty> Execute(GetPropertiesRequest request)
         {
             if (!_validatePostcode.Execute(request.Postcode))
-                throw new InvalidQueryParameterException("The Postcode parameter does not have a valid format");
+                throw new InvalidQueryParameterException("The postcode parameter does not have a valid format");
+
             var response = _gateway.GetPropertiesByPostcodeOrAddress(request);
             return _mapper.Map<List<HousingProperty>>(response);
         }
