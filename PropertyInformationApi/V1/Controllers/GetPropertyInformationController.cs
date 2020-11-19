@@ -65,10 +65,16 @@ namespace PropertyInformationApi.V1.Controllers
         {
             _logger.LogInformation("Multiple Property information was requested for " +
                                    propertyReferencesRequest.GetQueryDict());
-
-            var useCaseResponse = _getProperties.Execute(propertyReferencesRequest);
-            if (useCaseResponse is null) return NotFound();
-            return Ok(useCaseResponse);
+            try
+            {
+                var useCaseResponse = _getProperties.Execute(propertyReferencesRequest);
+                if (useCaseResponse == null) return NotFound();
+                return Ok(useCaseResponse);
+            }
+            catch (InvalidQueryParameterException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
     }
 }

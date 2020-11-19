@@ -6,7 +6,7 @@ namespace PropertyInformationApi.V1.UseCase.Interfaces
 {
     public interface IGetPropertiesUseCase
     {
-        List<HousingProperty> Execute(GetPropertiesRequest request);
+        IList<HousingProperty> Execute(GetPropertiesRequest request);
     }
 }
 
