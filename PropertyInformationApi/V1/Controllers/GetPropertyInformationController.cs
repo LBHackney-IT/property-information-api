@@ -41,12 +41,16 @@ namespace PropertyInformationApi.V1.Controllers
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public IActionResult GetByReference(string propertyReference)
         {
-            _logger.LogInformation("Property information was requested for " + propertyReference);
-            var response = _getProperty.Execute(propertyReference);
-
-            if (response != null) return Ok(response);
-
-            return NotFound();
+            try
+            {
+                _logger.LogInformation("Property information was requested for " + propertyReference);
+                var response = _getProperty.Execute(propertyReference);
+                return Ok(response);
+            }
+            catch (PropertyNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         /// <summary>
@@ -74,6 +78,10 @@ namespace PropertyInformationApi.V1.Controllers
             catch (InvalidQueryParameterException exception)
             {
                 return BadRequest(exception.Message);
+            }
+            catch (PropertyNotFoundException)
+            {
+                return NotFound();
             }
         }
     }

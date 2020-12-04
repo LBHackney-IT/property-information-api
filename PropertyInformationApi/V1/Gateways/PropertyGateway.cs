@@ -18,15 +18,17 @@ namespace PropertyInformationApi.V1.Gateways
 
         public UHProperty GetPropertyByPropertyReference(string propertyReference)
         {
-            var response = _uhContext.UhProperties.Find(propertyReference);
+            var response = _uhContext.UhProperties.FirstOrDefault(p => p.PropRef == propertyReference);
             return response;
         }
 
-        public IEnumerable<UHProperty> GetPropertiesByPostcodeOrAddress(GetPropertiesRequest request) =>
-            _uhContext.UhProperties
+        public IEnumerable<UHProperty> GetPropertiesByPostcodeOrAddress(GetPropertiesRequest request)
+        {
+            return _uhContext.UhProperties
             .Where(property => string.IsNullOrEmpty(request.Address) ||
             property.Address1.ToLower().Contains(request.Address.ToLower()))
             .Where(property => string.IsNullOrEmpty(request.Postcode) ||
-            property.PostCode.ToLower() == request.Postcode.ToLower());
+            property.PostCode.ToLower() == request.Postcode.ToLower()).ToList();
+        }
     }
 }

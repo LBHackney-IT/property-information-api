@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using AutoMapper;
+using System.Linq;
 using PropertyInformationApi.V1.Boundary.Request;
 using PropertyInformationApi.V1.Domain;
 using PropertyInformationApi.V1.Gateways;
+using PropertyInformationApi.V1.Infrastructure;
 using PropertyInformationApi.V1.UseCase.Interfaces;
 
 namespace PropertyInformationApi.V1.UseCase
@@ -26,6 +28,10 @@ namespace PropertyInformationApi.V1.UseCase
                 throw new InvalidQueryParameterException("The postcode parameter does not have a valid format");
 
             var response = _gateway.GetPropertiesByPostcodeOrAddress(request);
+
+            if (!response.Any())
+                throw new PropertyNotFoundException();
+
             return _mapper.Map<List<HousingProperty>>(response);
         }
     }

@@ -17,6 +17,8 @@ namespace PropertyInformationApi.V1.UseCase
         public HousingProperty Execute(string propertyReference)
         {
             var response = _gateway.GetPropertyByPropertyReference(propertyReference);
+            if (response == null)
+                throw new PropertyNotFoundException("Please use a valid property reference");
             return _mapper.Map<HousingProperty>(response);
         }
     }
