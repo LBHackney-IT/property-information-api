@@ -18,7 +18,7 @@ namespace PropertyInformationApi.V1.Gateways
 
         public UHProperty GetPropertyByPropertyReference(string propertyReference)
         {
-            var response = _uhContext.UhProperties.FirstOrDefault(p => p.PropRef == propertyReference);
+            var response = _uhContext.UhProperties.Find(propertyReference);
             return response;
         }
 

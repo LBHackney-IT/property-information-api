@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace PropertyInformationApi.V1.Boundary.Request
 {
