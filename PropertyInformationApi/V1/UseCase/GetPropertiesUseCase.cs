@@ -24,6 +24,10 @@ namespace PropertyInformationApi.V1.UseCase
 
         public IList<HousingProperty> Execute(GetPropertiesRequest request)
         {
+            //stop ef core query timeout
+            if (string.IsNullOrEmpty(request.Postcode) && string.IsNullOrEmpty(request.Address))
+                throw new InvalidQueryParameterException("Please check your query parameters");
+            //check postcode format is valid
             if (!_validatePostcode.Execute(request.Postcode))
                 throw new InvalidQueryParameterException("The postcode parameter does not have a valid format");
 

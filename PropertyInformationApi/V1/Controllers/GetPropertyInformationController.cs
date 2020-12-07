@@ -62,7 +62,7 @@ namespace PropertyInformationApi.V1.Controllers
         /// <returns></returns>
         [HttpGet]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<HousingProperty>), 200)]
+        [ProducesResponseType(typeof(IList<HousingProperty>), 200)]
         [ProducesResponseType(typeof(BadRequestResult), 400)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public IActionResult GetMultipleByReference([FromQuery] GetPropertiesRequest propertyReferencesRequest)
@@ -72,7 +72,6 @@ namespace PropertyInformationApi.V1.Controllers
             try
             {
                 var useCaseResponse = _getProperties.Execute(propertyReferencesRequest);
-                if (useCaseResponse == null) return NotFound();
                 return Ok(useCaseResponse);
             }
             catch (InvalidQueryParameterException exception)
